@@ -1,3 +1,4 @@
 Flask
 urllib3
 gunicorn
+beautifulsoup4
