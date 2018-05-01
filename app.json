@@ -1,0 +1,10 @@
+{
+  "buildpacks": [
+    {
+      "url": "https://github.com/Pcpkomputer/Fansub.LALER"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
