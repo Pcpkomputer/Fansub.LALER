@@ -1,0 +1,24 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{url_for('static',filename='images/favicon.png')}}">
+    <title>Fansub.La{P}ler</title>
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/sticky-footer.css')}}" rel="stylesheet">
+  </head>
+  <body>
+    <main role="main" class="container">
+      {%block body%}{%endblock%}
+    </main>
+    <footer class="footer">
+      <div class="container">
+      	 <span class="text-muted">Created by Padang Perwira Yudha.</span>
+      </div>
+    </footer>
+  </body>
+</html>
