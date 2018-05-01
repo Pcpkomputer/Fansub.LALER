@@ -3,6 +3,7 @@ from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import argparse
 import re
+from os import environ
 from re import *
 from module.oploverz import oploverz
 from module.awsubs import awsubs
@@ -41,4 +42,5 @@ def antarmuka():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+    port = int(environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
