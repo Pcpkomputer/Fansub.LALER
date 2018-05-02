@@ -4,7 +4,7 @@
 {%block body%}
 	<h1 class="mt-5">Fansub.<strike>La</strike>{P}ler URL Grabber</h1>
      <p class="lead">Just simple web application build with Flask and powered by Heroku</p>
-     <p class="lead">List : awsubs.co, oploverz.co, <strike>samehadaku.net</strike></p>
+     <p class="lead">List : awsubs.co, oploverz.in, samehadaku.tv</p>
      <form method="post" action="\">
       <h3 class="lead">Tautan &nbsp&nbsp<input type="text" name="tautan" value='{{request.form.tautan}}'>
      	<input type="submit" name="submit"></h3>
@@ -12,64 +12,37 @@
      	 <br>
  		<table>
 
+ 		{%if samehadaku_auth%}
+ 		<div id="samehadaku">
+ 		<tr>{%for x in nama_same%}<td>{{x}}</td>{%endfor%}</tr>
+ 		<tr>{%for l in uf%}<td><a href="{{l}}">Uploadfiles</a></td>{%endfor%}</tr>
+ 		<tr>{%for x in cu%}<td><a href="{{x}}"></a></td>{%endfor%}</tr>
+ 		<tr>{%for n in gd%}<td><a href="{{n}}">GoogleDrive</a></td>{%endfor%}</tr>
+		<tr>{%for m in zs%}<td><a href="{{m}}">Zippyshare</a></td>{%endfor%}</tr>
+		<tr>{%for j in sc%}<td><a href="{{j}}">Sendit</a></td>{%endfor%}</tr>
+		<tr>{%for k in mu%}<td><a href="{{k}}">Megaupload</a></td>{%endfor%}</tr>
+		</div>
+		{%endif%}
 
- 		<tr>
- 		{%for x in nama_oplo%}
- 		<td>{{x}}</td>
- 		{%endfor%}
- 		<tr>
+		{%if oplo_auth%}
+ 		<div id="oploverz">
+ 		<tr>{%for x in nama_oplo%}<td>{{x}}</td>{%endfor%}</tr>
+ 		<tr>{%for l in elsfile%}<td><a href="{{l}}">Elsfile</a></td>{%endfor%}</tr>
+ 		<tr>{%for x in drive_oplo%}<td><a href="{{x}}">Google Drive</a></td>{%endfor%}</tr>
+ 		<tr>{%for n in zippy%}<td><a href="{{n}}">Zippyshare</a></td>{%endfor%}</tr>
+		<tr>{%for m in mirror%}<td><a href="{{m}}">Mirror</a></td>{%endfor%}</tr>
+		</div>
+		{%endif%}
 
- 		<tr>
- 		{%for l in elsfile%}
- 		<td><a href="{{l}}">Elsfile</a></td>
- 		{%endfor%}
- 		<tr>
+		{%if awsu_auth%}
+		<div id="awsubs">
+ 		<tr>{%for x in nama%}<td>{{x}}</td>{%endfor%}</tr>
+		<tr>{%for l in solidfiles%}<td><a href="{{l}}">Solidfiles</a></td>{%endfor%}</tr>
+		<tr>{%for x in drive%}<td><a href="{{x}}">Google Drive</a></td>{%endfor%}</tr>
+		<tr>{%for n in datafile%}<td><a href="{{n}}">Datafile</a></td>{%endfor%}</tr>
+		</div>
+		{%endif%}
 
- 		<tr>
- 		{%for x in drive_oplo%}
- 		<td><a href="{{x}}">Google Drive</a></td>
- 		{%endfor%}
- 		<tr>
-
- 		<tr>
- 		{%for n in zippy%}
- 		<td><a href="{{n}}">Zippyshare</a></td>
- 		{%endfor%}
- 		<tr>
-
- 		<tr>
- 		{%for m in mirror%}
- 		<td><a href="{{m}}">Mirror</a></td>
- 		{%endfor%}
- 		<tr>
-
-
-
-
- 		<tr>
- 		{%for x in nama%}
- 		<td>{{x}}</td>
- 		{%endfor%}
- 		<tr>
-
- 		<tr>
- 		{%for l in solidfiles%}
- 		<td><a href="{{l}}">Solidfiles</a></td>
- 		{%endfor%}
- 		<tr>
-
- 		<tr>
- 		{%for x in drive%}
- 		<td><a href="{{x}}">Google Drive</a></td>
- 		{%endfor%}
- 		<tr>
-
- 		<tr>
- 		{%for n in datafile%}
- 		<td><a href="{{n}}">Datafile</a></td>
- 		{%endfor%}
- 		<tr>
-
- 		</table>
+		</table>
      	<p>{{e}}</p>
 {%endblock%}
