@@ -35,9 +35,9 @@ def antarmuka():
 				return render_template("konten.html", e=e)
 
 
-	except Exception as e:
+	except:
 		#error="GOBLOK"
-		return render_template('konten.html', e=e, error=error)
+		return render_template("konten.html",nama=nama,solidfiles=solidfiles,drive=drive,datafile=datafile)
 	return render_template('konten.html')
 
 
