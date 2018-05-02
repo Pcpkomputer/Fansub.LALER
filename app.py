@@ -22,7 +22,7 @@ def antarmuka():
 			x4="480p mp4"
 			x5="720p mp4"""
 			oplo=re.search(r"oploverz",str(link))
-			awsubs=re.search(r"awsubs",str(link))
+			awsubs=re.search(r"awsub",str(link))
 			if awsubs:
 				nama, solidfiles, drive, datafile=awsubs(link)
 				return render_template("konten.html",nama=nama,solidfiles=solidfiles,drive=drive,datafile=datafile)
@@ -37,7 +37,7 @@ def antarmuka():
 
 	except:
 		#error="GOBLOK"
-		return render_template("konten.html",nama=nama,solidfiles=solidfiles,drive=drive,datafile=datafile)
+		pass
 	return render_template('konten.html')
 
 
