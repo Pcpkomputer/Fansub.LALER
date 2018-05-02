@@ -16,14 +16,9 @@ def antarmuka():
 	try:
 		if request.method=="POST":
 			link=request.form['tautan']
-			"""x1="480p"
-			x2="720p"
-			x3="720p 10bit"
-			x4="480p mp4"
-			x5="720p mp4"""
 			oplo=re.search(r"oploverz",str(link))
-			awsubs=re.search(r"awsub",str(link))
-			if awsubs:
+			awsu=re.search(r"awsubs",str(link))
+			if awsu:
 				nama, solidfiles, drive, datafile=awsubs(link)
 				return render_template("konten.html",nama=nama,solidfiles=solidfiles,drive=drive,datafile=datafile)
 			if oplo:
@@ -35,9 +30,9 @@ def antarmuka():
 				return render_template("konten.html", e=e)
 
 
-	except:
+	except Exception as e:
 		#error="GOBLOK"
-		pass
+		return render_template("konten.html", e=e)
 	return render_template('konten.html')
 
 
