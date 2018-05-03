@@ -8,6 +8,7 @@ from re import *
 from module.oploverz import oploverz
 from module.awsubs import awsubs
 from module.samehadaku import samehada
+from module.animepahe import animepahe
 
 app = Flask(__name__)
 
@@ -20,9 +21,15 @@ def antarmuka():
 			oplo=re.search(r"oploverz",str(link))
 			samehad=re.search(r"samehada",str(link))
 			awsu=re.search(r"awsubs",str(link))
+			anipahe=re.search(r"animepahe",str(link))
+			anipahe_auth=False
 			oplo_auth=False
 			awsu_auth=False
 			samehadaku_auth=False
+			if anipahe:
+				anipahe_auth=True
+				p720,p480=animepahe(link)
+				return render_template("konten.html",p720=p720,p480=p480,anipahe_auth=anipahe_auth)
 			if samehad:
 				samehadaku_auth=True
 				nama_same, uf, cu, gd, zs, sc, mu=samehada(link)

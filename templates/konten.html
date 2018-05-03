@@ -12,6 +12,19 @@
      	 <br>
  		<table>
 
+ 		{%if anipahe_auth%}
+ 		<div id="animepahe">
+ 		<tr>
+ 		<td>720p</td>
+ 		<td>1080p</td>
+ 		</tr>
+ 		<tr>
+ 		<td><a href="{{p720}}">Mp4Upload</a></td>
+ 		<td><a href="{{p480}}">Mp4Upload</a></td>
+ 		</tr>
+		</div>
+		{%endif%}
+
  		{%if samehadaku_auth%}
  		<div id="samehadaku">
  		<tr>{%for x in nama_same%}<td>{{x}}</td>{%endfor%}</tr>
