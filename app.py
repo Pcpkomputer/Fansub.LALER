@@ -24,7 +24,6 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view='login'
-db.create_all()
 
 class FormDaftar(FlaskForm):
 	email = StringField('email', validators=[InputRequired(), Email(message='Email Salah'), Length(max=50)])
@@ -140,5 +139,4 @@ def antarmuka():
 
 
 if __name__ == '__main__':
-	db.create_all()
 	app.run(debug=True, use_reloader=True)
