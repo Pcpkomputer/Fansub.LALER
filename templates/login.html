@@ -1,0 +1,23 @@
+{%extends 'literally_template.html'%}
+
+
+{%block body%}
+	<h1 class="mt-5">Login Page</h1>
+    {%if reg%}
+    <p>User berhasil didaftarkan silakan login</p>
+    {%endif%}
+    <form method="POST" action="/login">
+    <p>Username :</p>
+    <input type="text" name="username">
+    <p>Password :</p>	
+    <input type="password" name="password">
+    <br>
+    <p style="margin-top: 25px"><input type="submit" name="submit"></p>
+    </form>
+    {%if e%}
+    <p>{{e}}</p>
+    {%endif%}
+    {%if s%}
+    <p>{{s}} :<a href="/register"> Klik Sini</a></p>
+    {%endif%}
+{%endblock%}

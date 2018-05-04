@@ -1,0 +1,17 @@
+{%extends 'literally_template.html'%}
+
+
+{%block body%}
+	<h1 class="mt-5">Register Page</h1>
+	<form method="POST" action="/register">
+	{{ form.csrf_token }}
+	<p>Email :</p>
+	<p>{{form.email(size=40)}}</p>
+	<p>Username :</p> 
+	<p>{{form.username(size=40)}}</p>
+	<p>Password :</p> 
+	<p>{{form.password(size=40)}}</p>
+	<input type="submit" name="submit">
+	</form>
+	
+{%endblock%}
