@@ -31,11 +31,9 @@
  		{%if samehadaku_auth%}
  		<div id="samehadaku">
  		<tr>{%for x in nama_same%}<td>{{x}}</td>{%endfor%}</tr>
- 		<tr>{%for l in uf%}<td><a href="{{l}}">Uploadfiles</a></td>{%endfor%}</tr>
- 		<tr>{%for x in cu%}<td><a href="{{x}}"></a></td>{%endfor%}</tr>
+ 		<tr>{%for x in cu%}<td><a href="{{x}}">ClickUpload</a></td>{%endfor%}</tr>
  		<tr>{%for n in gd%}<td><a href="{{n}}">GoogleDrive</a></td>{%endfor%}</tr>
 		<tr>{%for m in zs%}<td><a href="{{m}}">Zippyshare</a></td>{%endfor%}</tr>
-		<tr>{%for j in sc%}<td><a href="{{j}}">Sendit</a></td>{%endfor%}</tr>
 		<tr>{%for k in mu%}<td><a href="{{k}}">Megaupload</a></td>{%endfor%}</tr>
 		</div>
 		{%endif%}

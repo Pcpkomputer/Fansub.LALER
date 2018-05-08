@@ -27,30 +27,18 @@ def samehada(x):
     g_greget=re.compile(r"{clearInterval\(countdown\);window.location=\"(.+)\";}count--;}")
     ############
     namatabel=[]
-    uftabel=[]
+    #uftabel=[]
     cutabel=[]
     gdtabel=[]
     zstabel=[]
-    sctabel=[]
+    #sctabel=[]
     mutabel=[]
     ############
-    for x in nama:
-        namatabel.append(x)
-    for uf in uf:
-        req = Request(uf, headers={'User-Agent': 'Mozilla/5.0'})
-        url = urlopen(req)
-        html=BeautifulSoup(url, 'html.parser')
-        greget=re.search(g_greget,str(html))
-        greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
-            req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            uftabel.append(greget.group(1))
+    for i in range(4):
+        namatabel.append(nama[i])
             
-    for cu in cu:
-        req = Request(cu, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -62,8 +50,8 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             cutabel.append(greget.group(1))
             
-    for gd in gd:
-        req = Request(gd, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -75,8 +63,8 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             gdtabel.append(greget.group(1))
             
-    for zs in zs:
-        req = Request(zs, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -88,21 +76,8 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             zstabel.append(greget.group(1))
             
-    for sc in sc:
-        req = Request(sc, headers={'User-Agent': 'Mozilla/5.0'})
-        url = urlopen(req)
-        html=BeautifulSoup(url, 'html.parser')
-        greget=re.search(g_greget,str(html))
-        greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
-            req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            sctabel.append(greget.group(1))
-
-    for mu in mu:
-        req = Request(mu, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(mu[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -113,4 +88,5 @@ def samehada(x):
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             mutabel.append(greget.group(1))
-    return(namatabel, uftabel, cutabel, gdtabel, zstabel, sctabel, mutabel)
+    return(namatabel, cutabel, gdtabel, zstabel, mutabel)
+

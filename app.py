@@ -21,7 +21,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-##pp.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:password@localhost/fansublaler"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:password@localhost/fansublaler"
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -142,8 +142,8 @@ def antarmuka():
 				return render_template("konten.html",p720=p720,p480=p480,anipahe_auth=anipahe_auth)
 			if samehad:
 				samehadaku_auth=True
-				nama_same, uf, cu, gd, zs, sc, mu=samehada(link)
-				return render_template("konten.html",nama_same=nama_same,uf=uf, cu=cu, gd=gd, zs=zs, sc=sc, mu=mu, samehadaku_auth=samehadaku_auth)
+				nama_same, cu, gd, zs, mu=samehada(link)
+				return render_template("konten.html",nama_same=nama_same, cu=cu, gd=gd, zs=zs, mu=mu, samehadaku_auth=samehadaku_auth)
 			if awsu:
 				awsu_auth=True
 				nama, solidfiles, drive, datafile=awsubs(link)
