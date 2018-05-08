@@ -34,11 +34,11 @@ def samehada(x):
     #sctabel=[]
     mutabel=[]
     ############
-    for nama in nama:
-        namatabel.append(nama)
+    for i in range(4):
+        namatabel.append(nama[i])
             
-    for cu in cu:
-        req = Request(cu, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -50,8 +50,8 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             cutabel.append(greget.group(1))
             
-    for gd in gd:
-        req = Request(gd, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -63,8 +63,8 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             gdtabel.append(greget.group(1))
             
-    for zs in zs:
-        req = Request(zs, headers={'User-Agent': 'Mozilla/5.0'})
+    for i in range(4):
+        req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
@@ -75,18 +75,20 @@ def samehada(x):
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             zstabel.append(greget.group(1))
-    
-    for mu in mu:
-        req = Request(mu, headers={'User-Agent': 'Mozilla/5.0'})
-        url = urlopen(req)
-        html=BeautifulSoup(url, 'html.parser')
-        greget=re.search(g_greget,str(html))
-        greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
-            req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+            
+    if len(mu)>0:
+        for i in range(4):
+            req = Request(mu[i], headers={'User-Agent': 'Mozilla/5.0'})
             url = urlopen(req)
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
-            mutabel.append(greget.group(1))
-
+            greget_auth=re.search(r"greget",greget.group(1))
+            if greget:
+                req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                url = urlopen(req)
+                html=BeautifulSoup(url, 'html.parser')
+                greget=re.search(g_greget,str(html))
+                mutabel.append(greget.group(1))
+    else:
+        mutabel=[]
     return(namatabel, cutabel, gdtabel, zstabel, mutabel)

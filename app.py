@@ -145,9 +145,12 @@ def antarmuka():
 				p720,p480=animepahe(link)
 				return render_template("konten.html",p720=p720,p480=p480,anipahe_auth=anipahe_auth)
 			if samehad:
-				samehadaku_auth=True
-				nama_same, cu, gd, zs, mu=samehada(link)
-				return render_template("konten.html",nama_same=nama_same, cu=cu, gd=gd, zs=zs, mu=mu, samehadaku_auth=samehadaku_auth)
+				try:
+					samehadaku_auth=True
+					nama_same, cu, gd, zs, mu=samehada(link)
+					return render_template("konten.html",nama_same=nama_same, cu=cu, gd=gd, zs=zs, mu=mu, samehadaku_auth=samehadaku_auth)
+				except:
+					pass
 			if awsu:
 				awsu_auth=True
 				nama, solidfiles, drive, datafile=awsubs(link)
