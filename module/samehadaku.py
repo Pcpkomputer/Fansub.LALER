@@ -37,7 +37,7 @@ def samehada(x):
     for i in range(4):
         namatabel.append(nama[i])
             
-    for i in range(4):
+    for i in range(len(gd)-1):
         req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
@@ -50,7 +50,7 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             cutabel.append(greget.group(1))
             
-    for i in range(4):
+    for i in range(len(gd)-1):
         req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
@@ -63,7 +63,7 @@ def samehada(x):
             greget=re.search(g_greget,str(html))
             gdtabel.append(greget.group(1))
             
-    for i in range(4):
+    for i in range(len(gd)-1):
         req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
         url = urlopen(req)
         html=BeautifulSoup(url, 'html.parser')
@@ -77,7 +77,7 @@ def samehada(x):
             zstabel.append(greget.group(1))
             
     if len(mu)>0:
-        for i in range(4):
+        for i in range(len(gd)-1):
             req = Request(mu[i], headers={'User-Agent': 'Mozilla/5.0'})
             url = urlopen(req)
             html=BeautifulSoup(url, 'html.parser')
