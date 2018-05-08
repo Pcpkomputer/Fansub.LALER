@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify, json
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import argparse
@@ -11,6 +11,7 @@ from module.oploverz import oploverz
 from module.awsubs import awsubs
 from module.samehadaku import samehada
 from module.animepahe import animepahe
+from module.query.oploverz import query_oploverz
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import form, BooleanField, StringField, TextField, PasswordField, validators
@@ -20,6 +21,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+##pp.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:password@localhost/fansublaler"
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -48,6 +50,24 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.route('/api')
+def api():
+	mode = request.args.get('mode')
+	if mode=='dashboard':
+		fansub = request.args.get('fansub')
+		query = request.args.get('query')
+		if fansub=='oploverz':
+			hasil=query_oploverz(query)
+			return hasil
+		if fansub is None:
+			return '????????????????????'
+		elif query is None:
+			return '????????????????????'
+		return jsonify(tes='tes'+str(fansub)+str(query))
+	else:
+		return 'API FansubLaler v1.0.0'
+	return 'API FansubLaler v1.0.0'
+
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -65,13 +85,19 @@ def register():
 		return redirect(url_for('dashboard'))
 	form = FormDaftar()
 	if form.validate_on_submit():
-		email=form.email.data
-		username=form.username.data
-		password=form.password.data
-		user = User(username,email,password)
-		db.session.add(user)
-		db.session.commit()
-		return redirect(url_for('login'))
+		try:
+			email=form.email.data
+			username=form.username.data
+			password=form.password.data
+			user = User(username,email,password)
+			db.session.add(user)
+			db.session.commit()
+			return redirect(url_for('login'))
+		except Exception as e:
+			duplikat=re.search(r"duplicate key value violates",str(e))
+			if duplikat:
+				e="Maaf, email atau username telah terdaftar"
+			return render_template('register.html', form=form, e=e)
 
 	return render_template('register.html', form=form)
 

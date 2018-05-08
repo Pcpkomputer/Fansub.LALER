@@ -1,6 +1,22 @@
-{%extends 'literally_template.html'%}
+{%extends 'dashboard_template.html'%}
 
 
 {%block body%}
-	<h1 class="mt-5">Coming Soon!</h1>
+		<br>
+  <div class="form-inline">
+    <div class="col-auto my-1">
+      <select class="custom-select mr-sm-2" id="fansub">
+        <option selected>Pilih...</option>
+        <option value="oploverz">OPLOVERZ</option>
+        <option value="2">-</option>
+        <option value="3">-</option>
+      </select>
+      <input id="query" type="text" class="form-control" style="width: 880px" placeholder="Query">
+      <input type="submit" id="submit" class="btn btn-secondary">
+    </div></div>
+    <br>
+     <ul id="daftar" class="list-group" style="padding-left: 15px">
+ 
+</ul>
+<br>
 {%endblock%}

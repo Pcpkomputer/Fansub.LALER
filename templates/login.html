@@ -7,17 +7,28 @@
     <p>User berhasil didaftarkan silakan login</p>
     {%endif%}
     <form method="POST" action="/login">
-    <p>Username :</p>
-    <input type="text" name="username">
-    <p>Password :</p>	
-    <input type="password" name="password">
-    <br>
-    <p style="margin-top: 25px"><input type="submit" name="submit"></p>
+    <div class="form-group">
+    <label for="username">Username :</label>
+    <input type="text" class="form-control" style='width: 35%' name="username">
+    <label for="password">Password :</label>
+    <input type="password" class="form-control" style='width: 35%' name="password">
+    <p style="margin-top: 25px"><input type="submit"  class="btn btn-secondary" name="submit"></p>
     </form>
+    </div>
     {%if e%}
-    <p>{{e}}</p>
+   <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 350px">
+           {{e}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
     {%endif%}
     {%if s%}
-    <p>{{s}} :<a href="/register"> Klik Sini</a></p>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 600px">
+           {{s}} : <a href="/register">Klik Sini</a>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
     {%endif%}
 {%endblock%}
