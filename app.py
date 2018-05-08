@@ -12,6 +12,7 @@ from module.awsubs import awsubs
 from module.samehadaku import samehada
 from module.animepahe import animepahe
 from module.query.oploverz import query_oploverz
+from module.query.samehadaku import query_samehadaku
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import form, BooleanField, StringField, TextField, PasswordField, validators
@@ -21,7 +22,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:password@localhost/fansublaler"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:pass@localhost/fansublaler"
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -58,6 +59,9 @@ def api():
 		query = request.args.get('query')
 		if fansub=='oploverz':
 			hasil=query_oploverz(query)
+			return hasil
+		if fansub=='samehadaku':
+			hasil=query_samehadaku(query)
 			return hasil
 		if fansub is None:
 			return '????????????????????'

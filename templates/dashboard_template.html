@@ -16,16 +16,20 @@
     $(function() {
       $("#submit").click(function(){
         $("#daftar").empty();
+        $("#loader").css('display','inline');
         var select, query;
         var hasil="";
         query=$("#query").val();
         select=$("#fansub").val();
         $.getJSON( "api?mode=dashboard&fansub="+select+"&query="+query+"", function( data ) {
+          $("#loader").css('display','none');
         for(x=0;x<data.results.length;x++){
           hasil += '<li class="list-group-item">'+data.results[x]+'</li>'
         }
         $("#daftar").append(hasil);
         });
+
+
     });
     });
     </script>
