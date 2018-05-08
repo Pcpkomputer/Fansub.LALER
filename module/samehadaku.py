@@ -4,6 +4,12 @@ import argparse
 import re
 from re import *
 
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+import argparse
+import re
+from re import *
+
 def samehada(x):
     tautan=x
     nama_regex=re.compile(r"<strong>(.+)</strong>.*<span\s+style=\"color: #ff0000;\"><a href")
@@ -34,8 +40,11 @@ def samehada(x):
     #sctabel=[]
     mutabel=[]
     ############
-    for i in range(4):
-        namatabel.append(nama[i])
+    if len(nama)>0:
+        for i in range(4):
+            namatabel.append(nama[i])
+    else:
+        nama=['360p','480p','720p','1080p']
             
     for i in range(4):
         req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
