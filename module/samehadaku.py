@@ -37,58 +37,61 @@ def samehada(x):
         ############
         for i in range(4):
             namatabel.append(nama[i])
-                
-        for i in range(4):
-            req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            greget_auth=re.search(r"greget",greget.group(1))
-            if greget:
-                req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+        
+        if cu:
+            for i in range(4):
+                req = Request(cu[i], headers={'User-Agent': 'Mozilla/5.0'})
                 url = urlopen(req)
                 html=BeautifulSoup(url, 'html.parser')
                 greget=re.search(g_greget,str(html))
-                cutabel.append(greget.group(1))
-                
-        for i in range(4):
-            req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            greget_auth=re.search(r"greget",greget.group(1))
-            if greget:
-                req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                greget_auth=re.search(r"greget",greget.group(1))
+                if greget:
+                    req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                    url = urlopen(req)
+                    html=BeautifulSoup(url, 'html.parser')
+                    greget=re.search(g_greget,str(html))
+                    cutabel.append(greget.group(1))
+        if gd:
+            for i in range(4):
+                req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
                 url = urlopen(req)
                 html=BeautifulSoup(url, 'html.parser')
                 greget=re.search(g_greget,str(html))
-                gdtabel.append(greget.group(1))
-                
-        for i in range(4):
-            req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            greget_auth=re.search(r"greget",greget.group(1))
-            if greget:
-                req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                greget_auth=re.search(r"greget",greget.group(1))
+                if greget:
+                    req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                    url = urlopen(req)
+                    html=BeautifulSoup(url, 'html.parser')
+                    greget=re.search(g_greget,str(html))
+                    gdtabel.append(greget.group(1))
+        
+        if zs:        
+            for i in range(4):
+                req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
                 url = urlopen(req)
                 html=BeautifulSoup(url, 'html.parser')
                 greget=re.search(g_greget,str(html))
-                zstabel.append(greget.group(1))
-                
-        for i in range(4):
-            req = Request(mu[i], headers={'User-Agent': 'Mozilla/5.0'})
-            url = urlopen(req)
-            html=BeautifulSoup(url, 'html.parser')
-            greget=re.search(g_greget,str(html))
-            greget_auth=re.search(r"greget",greget.group(1))
-            if greget:
-                req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                greget_auth=re.search(r"greget",greget.group(1))
+                if greget:
+                    req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                    url = urlopen(req)
+                    html=BeautifulSoup(url, 'html.parser')
+                    greget=re.search(g_greget,str(html))
+                    zstabel.append(greget.group(1))
+
+        if mu:        
+            for i in range(4):
+                req = Request(mu[i], headers={'User-Agent': 'Mozilla/5.0'})
                 url = urlopen(req)
                 html=BeautifulSoup(url, 'html.parser')
                 greget=re.search(g_greget,str(html))
-                mutabel.append(greget.group(1))
-        return(namatabel, cutabel, gdtabel, zstabel, mutabel)
+                greget_auth=re.search(r"greget",greget.group(1))
+                if greget:
+                    req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                    url = urlopen(req)
+                    html=BeautifulSoup(url, 'html.parser')
+                    greget=re.search(g_greget,str(html))
+                    mutabel.append(greget.group(1))
+            return(namatabel, cutabel, gdtabel, zstabel, mutabel)
     except:
         pass
