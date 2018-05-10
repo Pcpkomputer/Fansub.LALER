@@ -14,8 +14,15 @@ def animepahe(x):
     req = Request(api, headers={'User-Agent': 'Mozilla/5.0'})
     url = urlopen(req)
     html=BeautifulSoup(url, 'html.parser')
+    print(html)
     l1=re.search(link1,str(html))
     l2=re.search(link2,str(html))
-    p720='https://mp4upload.com/'+l1.group(1)
-    p480='https://mp4upload.com/'+l2.group(1)
-    return(p720,p480)
+    if l1 is None and l2 is None:
+        l2=re.search(r"url\":\".+embed-(.+).html\"}",str(html))
+        p480=''
+        p720='https://mp4upload.com/'+l2.group(1)
+        return(p720,p480)
+    else:
+        p720='https://mp4upload.com/'+l1.group(1)
+        p480='https://mp4upload.com/'+l2.group(1)
+        return(p720,p480)

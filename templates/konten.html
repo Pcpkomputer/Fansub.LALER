@@ -34,8 +34,12 @@
  		<td>1080p</td>
  		</tr>
  		<tr>
+ 		{%if p480==''%}
+ 		<td><a href="{{p720}}">Mp4Upload</a></td>
+ 		{%else%}
  		<td><a href="{{p720}}">Mp4Upload</a></td>
  		<td><a href="{{p480}}">Mp4Upload</a></td>
+ 		{%endif%}
  		</tr>
 		</div>
 		{%endif%}

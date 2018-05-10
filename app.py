@@ -25,7 +25,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:pass@localhost/fansublaler"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:aaa@localhost/fansublaler"
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
