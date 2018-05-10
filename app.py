@@ -11,8 +11,11 @@ from module.oploverz import oploverz
 from module.awsubs import awsubs
 from module.samehadaku import samehada
 from module.animepahe import animepahe
+from module.anitoki import anitoki
 from module.query.oploverz import query_oploverz
 from module.query.samehadaku import query_samehadaku
+from module.query.awsubs import query_awsubs
+from module.query.anitoki import query_anitoki
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import form, BooleanField, StringField, TextField, PasswordField, validators
@@ -57,6 +60,12 @@ def api():
 	if mode=='dashboard':
 		fansub = request.args.get('fansub')
 		query = request.args.get('query')
+		if fansub=='anitoki':
+			hasil=query_anitoki(query)
+			return hasil
+		if fansub=='awsubs':
+			hasil=query_awsubs(query)
+			return hasil
 		if fansub=='oploverz':
 			hasil=query_oploverz(query)
 			return hasil
@@ -136,10 +145,16 @@ def antarmuka():
 			samehad=re.search(r"samehada",str(link))
 			awsu=re.search(r"awsubs",str(link))
 			anipahe=re.search(r"animepahe",str(link))
+			anitoket=re.search(r"anitoki",str(link))
+			anitoki_auth=False
 			anipahe_auth=False
 			oplo_auth=False
 			awsu_auth=False
 			samehadaku_auth=False
+			if anitoket:
+				anitoki_auth=True
+				namatoket, gdtoket, dttoket, zippytoket, uppittoket, mirrortoket=anitoki(link)
+				return render_template("konten.html", namatoket=namatoket, gdtoket=gdtoket, dttoket=dttoket, zippytoket=zippytoket, uppittoket=uppittoket, mirrortoket=mirrortoket, anitoki_auth=anitoki_auth)
 			if anipahe:
 				anipahe_auth=True
 				p720,p480=animepahe(link)

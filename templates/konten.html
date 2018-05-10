@@ -4,7 +4,7 @@
 {%block body%}
 	<h1 class="mt-5">Fansub.<strike>La</strike>{P}ler URL Grabber</h1>
      <p class="lead">Just simple web application build with Flask and powered by Heroku</p>
-     <p class="lead">List : awsubs.co, oploverz.in, samehadaku.tv, animepahe.com</p>
+     <p class="lead">List : awsubs.co, oploverz.in, samehadaku.tv, animepahe.com, anitoki.com</p>
      <form method="post" action="\">
      <div class="form-inline">
        <input class="form-control" style='width: 35%' type="text" name="tautan" value='{{request.form.tautan}}' placeholder="Tautan">
@@ -14,6 +14,18 @@
      	</form>
      	 <br>
  		<table class="table">
+
+ 		{%if anitoki_auth%}
+ 		<div id="samehadaku">
+ 		<tr>{%for x in namatoket%}<td>{{x}}</td>{%endfor%}</tr>
+ 		<tr>{%for x in gdtoket%}<td><a href="{{x}}">GoogleDrive</a></td>{%endfor%}</tr>
+ 		<tr>{%for n in dttoket%}<td><a href="{{n}}">Datafilehost</a></td>{%endfor%}</tr>
+		<tr>{%for m in zippytoket%}<td><a href="{{m}}">Zippyshare</a></td>{%endfor%}</tr>
+		<tr>{%for k in uppittoket%}<td><a href="{{k}}">Uppit</a></td>{%endfor%}</tr>
+		<tr>{%for k in mirrortoket%}<td><a href="{{k}}">Mirror</a></td>{%endfor%}</tr>
+		</div>
+		{%endif%}
+	
 
  		{%if anipahe_auth%}
  		<div id="animepahe">
@@ -66,4 +78,5 @@
 		</div>
 		<br>
      	{%endif%}
+     	<br>
 {%endblock%}
