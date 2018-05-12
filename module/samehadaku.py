@@ -18,7 +18,7 @@ def samehada(x):
     gd_regex=re.compile(r"href=\"(http://www.siotong.com/.....)\" rel=\"nofollow noopener\s+noreferrer\" style=\"color: #ff0000;\" target=\"_blank\">GD</a>")
     zs_regex=re.compile(r"href=\"(http://www.siotong.com/.....)\" rel=\"noopener noreferrer\s+nofollow\" style=\"color: #ff0000;\" target=\"_blank\">ZS</a>")
     sc_regex=re.compile(r"href=\"(http://www.siotong.com/.....)\" rel=\"noopener noreferrer\s+nofollow\" style=\"color: #ff0000;\" target=\"_blank\">SC</a>")
-    mu_regex=re.compile(r"href=\"(http://www.siotong.com/.....)\" rel=\"noopener noreferrer\s+nofollow\" style=\"color: #ff0000;\" target=\"_blank\">MU</a>")
+    mu_regex=re.compile(r"href=\"(http://www.siotong.com/.....)\" rel=\"noopener noreferrer\s+nofollow\" style=\"color: #ff0000;\" target=\"_blank\">[MU]+</a>")
     req = Request(tautan, headers={'User-Agent': 'Mozilla/5.0'})
     url = urlopen(req)
     html=BeautifulSoup(url, 'html.parser')
