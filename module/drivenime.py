@@ -27,7 +27,7 @@ def drivenime(x):
         html=bagilagi_bypass(kodetogel.group(1))
         drive=re.search(r"changeLink\(\){var a=\'([^']+)\';window",str(html))
         gd.append(drive.group(1))
-    print(resoz,gd)
+    return(resoz,gd)
         
     #if indexbl>0:
     #    for x in range(2,len(bagilagi)):
@@ -36,3 +36,4 @@ def drivenime(x):
     #        print(a)
     #else:
     #    pass
+    
