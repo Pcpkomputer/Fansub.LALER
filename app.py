@@ -12,6 +12,7 @@ from module.awsubs import awsubs
 from module.samehadaku import samehada
 from module.animepahe import animepahe
 from module.anitoki import anitoki
+from module.drivenime import drivenime
 from module.query.oploverz import query_oploverz
 from module.query.samehadaku import query_samehadaku
 from module.query.awsubs import query_awsubs
@@ -21,6 +22,7 @@ from flask_sqlalchemy import SQLAlchemy
 from wtforms import form, BooleanField, StringField, TextField, PasswordField, validators
 from wtforms.validators import InputRequired, Email, Length
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from module.bypasser.bagilagi import bagilagi_bypass
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
@@ -146,11 +148,17 @@ def antarmuka():
 			awsu=re.search(r"awsubs",str(link))
 			anipahe=re.search(r"animepahe",str(link))
 			anitoket=re.search(r"anitoki",str(link))
+			drivememeq=re.search(r"drivenime",str(link))
+			drivenime_auth=False
 			anitoki_auth=False
 			anipahe_auth=False
 			oplo_auth=False
 			awsu_auth=False
 			samehadaku_auth=False
+			if drivememeq:
+				drivenime_auth=True
+				drivenime_reso,drivenime_gd=drivenime(link)
+				return render_template("konten.html", drivenime_reso=drivenime_reso, drivenime_gd=drivenime_gd, drivenime_auth=drivenime_auth)
 			if anitoket:
 				anitoki_auth=True
 				namatoket, gdtoket, dttoket, zippytoket, uppittoket, mirrortoket=anitoki(link)
