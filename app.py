@@ -28,7 +28,7 @@ from module.bypasser.bagilagi import bagilagi_bypass
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:aaa@localhost/fansublaler"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:p@localhost/fansublaler"
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
