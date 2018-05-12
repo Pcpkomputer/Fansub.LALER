@@ -17,6 +17,7 @@ from module.query.oploverz import query_oploverz
 from module.query.samehadaku import query_samehadaku
 from module.query.awsubs import query_awsubs
 from module.query.anitoki import query_anitoki
+from module.query.drivenime import drivenime_query
 from flask_wtf import FlaskForm
 from flask_sqlalchemy import SQLAlchemy
 from wtforms import form, BooleanField, StringField, TextField, PasswordField, validators
@@ -62,6 +63,9 @@ def api():
 	if mode=='dashboard':
 		fansub = request.args.get('fansub')
 		query = request.args.get('query')
+		if fansub=='drivenime':
+			hasil=drivenime_query(query)
+			return hasil
 		if fansub=='anitoki':
 			hasil=query_anitoki(query)
 			return hasil
