@@ -10,27 +10,112 @@
     <title>Fansub.La{P}ler</title>
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/sticky-footer.css')}}" rel="stylesheet">
+    <style type="text/css">
+    .kepencet{background-color: #bbbbbb;}
+    </style>
      <script type=text/javascript src="{{
   url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
     <script type=text/javascript>
     $(function() {
-      $("#submit").click(function(){
-        $("#daftar").empty();
-        $("#loader").css('display','inline');
-        var select, query;
-        var hasil="";
-        query=$("#query").val();
-        select=$("#fansub").val();
-        $.getJSON( "api?mode=dashboard&fansub="+select+"&query="+query+"", function( data ) {
-          $("#loader").css('display','none');
-        for(x=0;x<data.results.length;x++){
-          hasil += '<li class="list-group-item">'+data.results[x]+'</li>'
-        }
-        $("#daftar").append(hasil);
+
+      ///////////////////////////////////////////////////////////
+        var awal=''
+        awal+='<br>'
+        awal+='<div class="form-inline">'
+        awal+='<div class="col-auto my-1" style="left: 180px">'
+        awal+='<select class="custom-select mr-sm-2" id="fansub">'
+        awal+='<option selected>Pilih...</option>'
+        awal+='<option value="oploverz">OPLOVERZ</option>'
+        awal+='<option value="samehadaku">SAMEHADAKU</option>'
+        awal+='<option value="awsubs">AWSUBS</option>'
+        awal+='<option value="anitoki">ANITOKI</option>'
+        awal+='<option value="drivenime">DRIVENIME</option>'
+        awal+='</select>'
+        awal+='<input id="query" type="text" class="form-control" style="width: 775px" placeholder="Query">'
+        awal+='<input type="submit" id="querybutton" class="btn btn-secondary">'
+        awal+='</div></div>'
+        awal+='<ul id="daftar" class="list-group" style="padding-left: 15px; width: 1020px; margin-left: 180px; margin-top: 16px">'
+        awal+='</ul>'
+        awal+='<div id="loader" style="display:none;"><img style="margin-left: 632px;margin-top: 10px;'
+        awal+='margin-right: 500px;" src="https://www.w3schools.com/jquery/demo_wait.gif"/></div>'
+        awal+='<br>'
+        $(".container").html(awal);
+      ///////////////////////////////////////////////////////////
+
+        $(document).on('click','#querybutton',function(event){
+          event.preventDefault();
+            $("#daftar").empty();
+            $("#loader").css('display','inline');
+            var select, query;
+            var hasil="";
+            query=$("#query").val();
+            select=$("#fansub").val();
+            $.getJSON( "api?mode=dashboard&fansub="+select+"&query="+query+"", function( data ) {
+              $("#loader").css('display','none');
+            for(x=0;x<data.results.length;x++){
+              hasil += '<li class="list-group-item">'+data.results[x]+'</li>'
+            }
+            $("#daftar").append(hasil);
+            });
+  
         });
 
+      ///////////////////////////////////////////////////////////
+  
+        $("#navigasi1").click(function(){
+        $(".container").empty();
+        var isinav1=""
+        $("a").removeClass("kepencet");
+        $(this).addClass("kepencet");
+        isinav1+='<br>'
+        isinav1+='<div class="form-inline">'
+        isinav1+='<div class="col-auto my-1" style="left: 180px">'
+        isinav1+='<select class="custom-select mr-sm-2" id="fansub">'
+        isinav1+='<option selected>Pilih...</option>'
+        isinav1+='<option value="oploverz">OPLOVERZ</option>'
+        isinav1+='<option value="samehadaku">SAMEHADAKU</option>'
+        isinav1+='<option value="awsubs">AWSUBS</option>'
+        isinav1+='<option value="anitoki">ANITOKI</option>'
+        isinav1+='<option value="drivenime">DRIVENIME</option>'
+        isinav1+='</select>'
+        isinav1+='<input id="query" type="text" class="form-control" style="width: 775px" placeholder="Query">'
+        isinav1+='<input type="submit" id="querybutton" class="btn btn-secondary">'
+        isinav1+='</div></div>'
+        isinav1+='<ul id="daftar" class="list-group" style="padding-left: 15px; width: 1020px; margin-left: 180px; margin-top: 16px">'
+        isinav1+='</ul>'
+        isinav1+='<div id="loader" style="display:none;"><img style="margin-left: 632px;margin-top: 10px;'
+        isinav1+='margin-right: 500px;" src="https://www.w3schools.com/jquery/demo_wait.gif"/></div>'
+        isinav1+='<br>'
+        $(".container").html(isinav1);
+      });
 
-    });
+      ///////////////////////////////////////////////////////////
+    
+
+       $("#navigasi2").click(function(){
+        $(".container").empty();
+        $("a").removeClass("kepencet");
+        $(this).addClass("kepencet");
+      });
+
+      ///////////////////////////////////////////////////////////
+
+         $("#navigasi3").click(function(){
+        $("a").removeClass("kepencet");
+        $(this).addClass("kepencet");
+      });
+
+        ///////////////////////////////////////////////////////////
+
+           $("#navigasi4").click(function(){
+        $("a").removeClass("kepencet");
+        $(this).addClass("kepencet");
+      });
+
+      ///////////////////////////////////////////////////////////
+
+
+
     });
     </script>
   </head>
@@ -68,13 +153,17 @@
   </div>
 </nav>
   <body>
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width: 270px;position: absolute;margin-left: 30px;margin-top: 26px; background-color: #f8f9fa!important;">
+  <a class="nav-link kepencet" id="navigasi1"  href="#" style="color: rgba(0,0,0,.9);">Pencarian Rilisan</a>
+  <a class="nav-link" id="navigasi2" href="#" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="color: rgba(0,0,0,.9)">Link Cepat Otomatis</a>
+  <a class="nav-link"  id="navigasi3" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false" style="color: rgba(0,0,0,.9)">#</a>
+  <a class="nav-link" id="navigasi4" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false" style="color: rgba(0,0,0,.9)">#</a>
+</div>
     <main role="main" class="container">
       {%block body%}{%endblock%}
     </main>
-    <footer class="footer">
-      <div class="container">
-      	 <span class="text-muted">Created by Padang Perwira Yudha.</span>
-      </div>
+         <footer class="footer">
+      	 <span class="text-muted" style="margin-left: 40px">Created by Padang Perwira Yudha.</span>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script type=text/javascript src="{{
