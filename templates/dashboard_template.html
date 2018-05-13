@@ -93,14 +93,29 @@
     
 
        $("#navigasi2").click(function(){
+        var isinav2=""
         $(".container").empty();
         $("a").removeClass("kepencet");
         $(this).addClass("kepencet");
+        isinav2+='<br>'
+        isinav2+='<div class="form-inline">'
+        isinav2+='<div class="col-auto my-1" style="left: 180px">'
+        isinav2+='<input id="zippyshare_tautan" type="text" class="form-control" style="width: 928px" placeholder="Tautan Zippyshare (Soon!)">'
+        isinav2+='<input type="submit" id="zippyshare_direct" class="btn btn-secondary"><br><br>'
+        isinav2+='<input id="googledrive_tautan" type="text" class="form-control" style="width: 928px" placeholder="Tautan GoogleDrive (Soon!)">'
+        isinav2+='<input type="submit" id="googledrive_direct" class="btn btn-secondary"><br><br>'
+         isinav2+='<input id="elsfile_tautan" type="text" class="form-control" style="width: 928px" placeholder="Tautan Elsfile (Soon!)">'
+        isinav2+='<input type="submit" id="elsfile_direct" class="btn btn-secondary">'
+        isinav2+='</div></div>'
+        isinav2+='</ul>'
+        isinav2+='<br>'
+        $(".container").html(isinav2);
       });
 
       ///////////////////////////////////////////////////////////
 
          $("#navigasi3").click(function(){
+          $(".container").empty();
         $("a").removeClass("kepencet");
         $(this).addClass("kepencet");
       });
@@ -108,6 +123,7 @@
         ///////////////////////////////////////////////////////////
 
            $("#navigasi4").click(function(){
+           $(".container").empty();
         $("a").removeClass("kepencet");
         $(this).addClass("kepencet");
       });
@@ -162,8 +178,8 @@
     <main role="main" class="container">
       {%block body%}{%endblock%}
     </main>
-         <footer class="footer">
-      	 <span class="text-muted" style="margin-left: 40px">Created by Padang Perwira Yudha.</span>
+    <footer class="footer">
+         <span class="text-muted" style="margin-left: 128px">Created by Padang Perwira Yudha.</span>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script type=text/javascript src="{{
