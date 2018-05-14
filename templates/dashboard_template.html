@@ -41,6 +41,26 @@
         awal+='<br>'
         $(".container").html(awal);
       ///////////////////////////////////////////////////////////
+      $(document).on('click','#zippyshare_direct',function(event){
+      event.preventDefault();
+      tautan=$("#zippyshare_tautan").val();
+      $.getJSON("api?mode=directlink&hosting=zippyshare&link="+tautan,function(data){
+      window.open(data.direct,"_self");
+
+      });
+      });
+
+      ///////////////////////////////////////////////////////////
+      $(document).on('click','#googledrive_direct',function(event){
+      event.preventDefault();
+      tautan=$("#googledrive_tautan").val();
+      $.getJSON("api?mode=directlink&hosting=googledrive&link="+tautan,function(data){
+      window.open(data.direct);
+
+      });
+      });
+
+      ///////////////////////////////////////////////////////////
 
         $(document).on('click','#querybutton',function(event){
           event.preventDefault();

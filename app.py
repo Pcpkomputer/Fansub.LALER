@@ -24,6 +24,8 @@ from wtforms import form, BooleanField, StringField, TextField, PasswordField, v
 from wtforms.validators import InputRequired, Email, Length
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from module.bypasser.bagilagi import bagilagi_bypass
+from module.direct.zippyshare import zippyshare_direct
+from module.direct.googledrive import googledrive_direct
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
@@ -60,6 +62,16 @@ def load_user(user_id):
 @app.route('/api')
 def api():
 	mode = request.args.get('mode')
+	if mode=='directlink':
+		hosting = request.args.get('hosting')
+		link = request.args.get('link')
+		if hosting=='zippyshare':
+			hasil=zippyshare_direct(link)
+			return hasil
+		if hosting=='googledrive':
+			hasil=googledrive_direct(link)
+			return hasil
+
 	if mode=='dashboard':
 		fansub = request.args.get('fansub')
 		query = request.args.get('query')
