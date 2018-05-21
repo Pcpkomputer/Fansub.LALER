@@ -26,6 +26,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from module.bypasser.bagilagi import bagilagi_bypass
 from module.direct.zippyshare import zippyshare_direct
 from module.direct.googledrive import googledrive_direct
+from module.pahein import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'apasehanjenggkjelas'
@@ -165,12 +166,18 @@ def antarmuka():
 			anipahe=re.search(r"animepahe",str(link))
 			anitoket=re.search(r"anitoki",str(link))
 			drivememeq=re.search(r"drivenime",str(link))
+			pahein=re.search(r"pahe.in",str(link))
+			pahein_auth=False
 			drivenime_auth=False
 			anitoki_auth=False
 			anipahe_auth=False
 			oplo_auth=False
 			awsu_auth=False
 			samehadaku_auth=False
+			if pahein:
+				pahein_auth=True
+				pahein_berkas, pahein_gd, pahein_utb, pahein_mega=pahein_hajar(link)
+				return render_template("konten.html", pahein_berkas=pahein_berkas, pahein_gd=pahein_gd, pahein_utb=pahein_utb, pahein_mega=pahein_mega, pahein_auth=pahein_auth)
 			if drivememeq:
 				drivenime_auth=True
 				drivenime_reso,drivenime_gd=drivenime(link)

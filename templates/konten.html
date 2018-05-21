@@ -4,7 +4,7 @@
 {%block body%}
 	<h1 class="mt-5">Fansub.<strike>La</strike>{P}ler URL Grabber</h1>
      <p class="lead">Just simple web application build with Flask and powered by Heroku</p>
-     <p class="lead">List : awsubs.co, oploverz.in, samehadaku.tv, animepahe.com, anitoki.com, drivenime.com</p>
+     <p class="lead">List : awsubs.co, oploverz.in, samehadaku.tv, animepahe.com, anitoki.com, drivenime.com, pahe.in</p>
      <form method="post" action="\">
      <div class="form-inline">
        <input class="form-control" style='width: 35%' type="text" name="tautan" value='{{request.form.tautan}}' placeholder="Tautan">
@@ -14,6 +14,15 @@
      	</form>
      	 <br>
  		<table class="table">
+
+ 		{%if pahein_auth%}
+ 		<div id="pahein">
+ 		<tr>{%for x in pahein_berkas%}<td>{{x}}</td>{%endfor%}</tr>
+ 		<tr>{%for x in pahein_gd%}<td><a href="{{x}}">GoogleDrive</a></td>{%endfor%}</tr>
+ 		<tr>{%for x in pahein_utb%}<td><a href="{{x}}">UploadBox</a></td>{%endfor%}</tr>
+ 		<tr>{%for x in pahein_mega%}<td><a href="{{x}}">Mega</a></td>{%endfor%}</tr>
+ 		</div>
+ 		{%endif%}
 
  		{%if drivenime_auth%}
  		<div id="drivenime">
