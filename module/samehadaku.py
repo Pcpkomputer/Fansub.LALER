@@ -3,12 +3,7 @@ from bs4 import BeautifulSoup
 import argparse
 import re
 from re import *
-
-from urllib.request import urlopen, Request
-from bs4 import BeautifulSoup
-import argparse
-import re
-from re import *
+import requests
 
 def samehada(x):
     tautan=x
@@ -52,12 +47,26 @@ def samehada(x):
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
         greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
+        coegin_auth=re.search(r"coeg",greget.group(1))
+        telon_auth=re.search(r"telondasmu",greget.group(1))
+        if greget_auth:
             req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
             url = urlopen(req)
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             cutabel.append(greget.group(1))
+        if coegin_auth:
+            req=Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            cutabel.append(s.url)
+        if telon_auth:
+            req=Request(greget.group(1),  headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            cutabel.append(s.url)
             
     for i in range(4):
         req = Request(gd[i], headers={'User-Agent': 'Mozilla/5.0'})
@@ -65,12 +74,26 @@ def samehada(x):
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
         greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
+        coegin_auth=re.search(r"coeg",greget.group(1))
+        telon_auth=re.search(r"telondasmu",greget.group(1))
+        if greget_auth:
             req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
             url = urlopen(req)
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             gdtabel.append(greget.group(1))
+        if coegin_auth:
+            req=Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            gdtabel.append(s.url)
+        if telon_auth:
+            req=Request(greget.group(1),  headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            gdtabel.append(s.url)
             
     for i in range(4):
         req = Request(zs[i], headers={'User-Agent': 'Mozilla/5.0'})
@@ -78,12 +101,26 @@ def samehada(x):
         html=BeautifulSoup(url, 'html.parser')
         greget=re.search(g_greget,str(html))
         greget_auth=re.search(r"greget",greget.group(1))
-        if greget:
+        coegin_auth=re.search(r"coeg",greget.group(1))
+        telon_auth=re.search(r"telondasmu",greget.group(1))
+        if greget_auth:
             req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
             url = urlopen(req)
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             zstabel.append(greget.group(1))
+        if coegin_auth:
+            req=Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            zstabel.append(s.url)
+        if telon_auth:
+            req=Request(greget.group(1),  headers={'User-Agent': 'Mozilla/5.0'})
+            url=urlopen(req)
+            html=BeautifulSoup(url, 'html.parser')
+            s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+            zstabel.append(s.url)
             
     if len(mu)>0:
         for i in range(4):
@@ -92,12 +129,27 @@ def samehada(x):
             html=BeautifulSoup(url, 'html.parser')
             greget=re.search(g_greget,str(html))
             greget_auth=re.search(r"greget",greget.group(1))
-            if greget:
+            coegin_auth=re.search(r"coeg",greget.group(1))
+            telon_auth=re.search(r"telondasmu",greget.group(1))
+            if greget_auth:
                 req = Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
                 url = urlopen(req)
                 html=BeautifulSoup(url, 'html.parser')
                 greget=re.search(g_greget,str(html))
                 mutabel.append(greget.group(1))
+            if coegin_auth:
+                req=Request(greget.group(1), headers={'User-Agent': 'Mozilla/5.0'})
+                url=urlopen(req)
+                html=BeautifulSoup(url, 'html.parser')
+                s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+                mutabel.append(s.url)
+            if telon_auth:
+                req=Request(greget.group(1),  headers={'User-Agent': 'Mozilla/5.0'})
+                url=urlopen(req)
+                html=BeautifulSoup(url, 'html.parser')
+                s=requests.get(re.search(r"div class=\"download-link\"[^h]+href=\"([^\"]+)\"",str(html)).group(1),headers={'User-Agent': 'Mozilla/5.0'})
+                mutabel.append(s.url)
     else:
         mutabel=[]
+
     return(namatabel, cutabel, gdtabel, zstabel, mutabel)
