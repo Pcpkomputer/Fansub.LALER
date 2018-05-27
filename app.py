@@ -26,6 +26,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from module.bypasser.bagilagi import bagilagi_bypass
 from module.direct.zippyshare import zippyshare_direct
 from module.direct.googledrive import googledrive_direct
+from module.direct.elsfile import elsfile_direct
 from module.pahein import *
 
 app = Flask(__name__)
@@ -71,6 +72,9 @@ def api():
 			return hasil
 		if hosting=='googledrive':
 			hasil=googledrive_direct(link)
+			return hasil
+		if hosting=='elsfile':
+			hasil=elsfile_direct(link)
 			return hasil
 
 	if mode=='dashboard':
