@@ -10,7 +10,8 @@ def drivenime(x):
     req = Request(url_awal, headers={"user-Agent" : "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"})
     res = urlopen(req)
     html = BeautifulSoup(res, "html.parser")
-    bagilagi=re.findall(r"href=\"(http(s|)://bagilagi.com/[^\"]+)\" rel=\"nofollow\">[^p]+p]",str(html))
+    bagilagi=re.findall(r"href=\"(http://bagilagi.com/[^\"]+)\"",str(html))
+    print(html)
     #indexbl=len(bagilagi)-2
     reso=re.findall(r"nofollow\">[^<]+[^p]/a>([^<]+)<p>",str(html))
     gd=[]
@@ -36,4 +37,7 @@ def drivenime(x):
     #        print(a)
     #else:
     #    pass
+
+#if __name__=='__main__':
+#    drivenime('https://drivenime.com/c3-bd-subtitle-indonesia-batch/')
     
