@@ -10,9 +10,10 @@ def drivenime(x):
     req = Request(url_awal, headers={"user-Agent" : "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"})
     res = urlopen(req)
     html = BeautifulSoup(res, "html.parser")
-    bagilagi=re.findall(r"href=\"(http://bagilagi.com/[^\"]+)\"\s+rel=\"\w+\">[^\[]+",str(html))
+    bagilagi=re.findall(r"href=\"(http://bagilagi.com/[^\"]+)\"\s+rel=\"nofollow\">[^\[]+\[\d+p]",str(html))
     #indexbl=len(bagilagi)-2
     reso=re.findall(r"nofollow\">[^<]+[^p]/a>([^<]+)<p>",str(html))
+    #print(bagilagi)
     gd=[]
     resoz=[]
     for x in range(3):
