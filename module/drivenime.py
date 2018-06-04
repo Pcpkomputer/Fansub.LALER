@@ -15,18 +15,32 @@ def drivenime(x):
     reso=re.findall(r"nofollow\">[^<]+[^p]/a>([^<]+)<p>",str(html))
     gd=[]
     resoz=[]
-    for x in range(3):
-        a=str(reso[x]).replace(r"\xa0",r"")
-        a=re.sub(r"\s","",a)
-        resoz.append(a)
-        
-    for x in range(3):
-        a=str(bagilagi[x]).replace(r"('","")
-        a=a.replace(r"', '')","")
-        kodetogel=re.search(r"\?id=(.*)",str(a))
-        html=bagilagi_bypass(kodetogel.group(1))
-        drive=re.search(r"changeLink\(\){var a=\'([^']+)\';window",str(html))
-        gd.append(drive.group(1))
+    if len(reso)<3:
+        for x in reso:
+            a=x.replace(r"\xa0",r"")
+            a=re.sub(r"\s","",a)
+            resoz.append(a)
+    else:
+        for x in range(3):
+            a=str(reso[x]).replace(r"\xa0",r"")
+            a=re.sub(r"\s","",a)
+            resoz.append(a)
+    if len(bagilagi)<3:
+        for x in bagilagi:
+            a=str(x).replace(r"('","")
+            a=a.replace(r"', '')","")
+            kodetogel=re.search(r"\?id=(.*)",str(a))
+            html=bagilagi_bypass(kodetogel.group(1))
+            drive=re.search(r"changeLink\(\){var a=\'([^']+)\';window",str(html))
+            gd.append(drive.group(1))          
+    else:  
+        for x in range(3):
+            a=str(bagilagi[x]).replace(r"('","")
+            a=a.replace(r"', '')","")
+            kodetogel=re.search(r"\?id=(.*)",str(a))
+            html=bagilagi_bypass(kodetogel.group(1))
+            drive=re.search(r"changeLink\(\){var a=\'([^']+)\';window",str(html))
+            gd.append(drive.group(1))
     return(resoz,gd)
         
     #if indexbl>0:
@@ -38,5 +52,5 @@ def drivenime(x):
     #    pass
 
 #if __name__=='__main__':
-#    drivenime('https://drivenime.com/c3-bd-subtitle-indonesia-batch/')
+#    drivenime('https://drivenime.com/fuuma-no-kojirou-seiken-sensou-hen-subtitle-indonesia-batch/')
     
