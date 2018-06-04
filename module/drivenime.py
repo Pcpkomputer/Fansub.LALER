@@ -37,6 +37,6 @@ def drivenime(x):
     #else:
     #    pass
 
-if __name__=='__main__':
-    drivenime('https://drivenime.com/c3-bd-subtitle-indonesia-batch/')
+#if __name__=='__main__':
+#    drivenime('https://drivenime.com/c3-bd-subtitle-indonesia-batch/')
     
