@@ -4,7 +4,7 @@ import argparse
 import re
 from re import *
 import requests
-from bypasser.yudhaLIB import yudhaLIB
+from module.bypasser.yudhaLIB import yudhaLIB
 
 def samehada(x):
     tautan=x
