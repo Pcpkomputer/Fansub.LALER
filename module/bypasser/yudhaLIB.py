@@ -1,11 +1,15 @@
 import re
 import requests
 
-__GET=re.compile(r"(www.tetew.info|www.anjay.info)")
+__GET=re.compile(r"(www.tetew.info|www.anjay.info|hexafile.net)")
 headers={"User-Agent" : "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"}
 req=requests.Session()
 
 class jamu:
+    def hexafile_net(self,x):
+        self.html=req.get(x,headers=headers).text
+        self.link=re.search(r"\"([^\"]+)\",e=0,f=a",str(self.html)).group(1)
+        return self.link
     def tetew_info(self,x):
         self.html=req.get(x,headers=headers).text
         self.link=re.search(r";window.location=\"([^\"]+)\";}count--",str(self.html)).group(1)
@@ -16,6 +20,9 @@ class jamu:
         return self.link
 
 def pengecek(x):
+    if re.search(r"hexafile.net",str(x)):
+        bypass=jamu()
+        return bypass.hexafile_net(x)
     if re.search(r"tetew.info", str(x)):
         bypass=jamu()
         return bypass.tetew_info(x)
