@@ -5,3 +5,4 @@ flask_wtf
 flask_sqlalchemy
 flask_login
 requests
+flask_cors
