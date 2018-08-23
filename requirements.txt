@@ -1,7 +1,5 @@
 Flask
-urllib3
 gunicorn
-beautifulsoup4
 psycopg2
 flask_wtf
 flask_sqlalchemy
