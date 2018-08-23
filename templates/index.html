@@ -282,7 +282,7 @@ height: 15px;
             $('#hasilfitur').slideDown(300);
             document.getElementById('closelalerfansub').style.display='';
             e.currentTarget.setAttribute('disabled','disabled');
-            $.get('http://fansub-laler.herokuapp.com/api?mode=bypass&url='+e.currentTarget.value,function(data,status){
+            $.get('https://fansub-laler.herokuapp.com/api?mode=bypass&url='+e.currentTarget.value,function(data,status){
                 if(data=='error'){
                     document.getElementById('hasilfitur').innerHTML='';
                 }
