@@ -1,6 +1,6 @@
 import re
 import requests
-from _bypasser import yudhaLIB
+from yudhaLIB._bypasser import yudhaLIB
 
 class fansub:
     req=requests.Session()
