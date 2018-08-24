@@ -33,8 +33,8 @@ height: 15px;">{}</span>
     def oploverz(self,url):
         html=self.req.get(url).text
         judul=re.findall(r"<div class=\"sorattl title-download\">([^<]+)</div>",str(html))
-        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^E]+Elsfile</a>",str(html))
-        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^Z]+Zippyshare</a>",str(html))
+        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^E]+Elsfile",str(html))
+        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^Z]+Zippyshare",str(html))
         googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^G]+Google Drive",str(html))
         mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^M]+Mirr",str(html))
         while(len(judul)>len(elsfile)):
