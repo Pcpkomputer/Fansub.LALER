@@ -1,8 +1,9 @@
 from flask import Flask,request,url_for,redirect,render_template
 from flask_cors import CORS
-from yudhaLIB._bypasser import *
+from yudhaLIB._bypasser import yudhaLIB
 from yudhaLIB._fansublaler import _fansublaler
 from yudhaLIB._pencarian import *
+import re
 
 app=Flask(__name__)
 CORS(app)
@@ -13,6 +14,10 @@ def index():
 
 @app.route('/api',methods=['GET','POST'])
 def api():
+    if request.args.get('redirect'):
+        res=yudhaLIB(request.args.get('redirect'))
+        return redirect(res)
+
     if request.args.get('mode'):
         if request.args.get('mode')=='bypass':
             try:
@@ -22,6 +27,9 @@ def api():
                     return str(res)
                 if re.search(r"samehadaku",str(url)):
                     res=_fansublaler('samehadaku',request.args.get('url'))
+                    return str(res)
+                if re.search(r"awsubs",str(url)):
+                    res=_fansublaler('awsubs',request.args.get('url'))
                     return str(res)
                 else:
                     return 'error'

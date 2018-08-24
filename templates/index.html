@@ -198,7 +198,14 @@ input[type="text"]:disabled {
                                     <div style="
     font-size: 10px;
     margin-bottom:  5px;
-">Support :<span id="sptfansub" class="uk-badge sptfansub" style="
+">Support :
+<span id="sptfansub" class="uk-badge sptfansub" style="
+    font-size: 9px;
+    border-radius: 0px;
+    margin-left: 6px;
+    height: 15px;
+">Samehadaku</span>
+<span id="sptfansub" class="uk-badge sptfansub" style="
     font-size: 9px;
     border-radius: 0px;
     margin-left: 6px;
@@ -213,17 +220,7 @@ font-size: 9px;
 border-radius: 0px;
 margin-left: 6px;
 height: 15px;
-">Animepahe</span><span id="sptfansub" class="uk-badge sptfansub" style="
-font-size: 9px;
-border-radius: 0px;
-margin-left: 6px;
-height: 15px;
-">Anitoki</span><span id="sptfansub" class="uk-badge sptfansub" style="
-font-size: 9px;
-border-radius: 0px;
-margin-left: 6px;
-height: 15px;
-">Drivenime</span></div>
+">Anitoki</span></div>
                                     <div id="searchbox">
                                     <span id="closelalerfansub" style="cursor:pointer;display:none;position: absolute;
                                     margin-top: 2px;
@@ -263,7 +260,8 @@ height: 15px;
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
-
+    
+    var __app__='http://fansub-laler.herokuapp.com/';
         
     $(document).on('click','#closelalerfansub',function(e){
         document.getElementById('closelalerfansub').style.display='none';
@@ -282,14 +280,15 @@ height: 15px;
             $('#hasilfitur').slideDown(300);
             document.getElementById('closelalerfansub').style.display='';
             e.currentTarget.setAttribute('disabled','disabled');
-            $.get('https://fansub-laler.herokuapp.com/api?mode=bypass&url='+e.currentTarget.value,function(data,status){
+            $.get(__app__+'api?mode=bypass&url='+e.currentTarget.value,function(data,status){
+                console.log(status);
                 if(data=='error'){
                     document.getElementById('hasilfitur').innerHTML='';
                 }
                 else{
                     document.getElementById('hasilfitur').innerHTML=data;
                                     $('a').map((a,b)=>{
-                    if(b.href.match('None')){
+                    if(b.href.match('placeholder')||b.href.match('None')){
                         b.innerHTML='<strike>'+b.innerHTML+'</strike>';
                     }
                     })
