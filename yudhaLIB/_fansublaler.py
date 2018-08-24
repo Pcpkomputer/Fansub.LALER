@@ -1,6 +1,6 @@
 import re
 import requests
-from yudhaLIB._bypasser import yudhaLIB
+from _bypasser import yudhaLIB
 
 class fansub:
     req=requests.Session()
@@ -8,7 +8,7 @@ class fansub:
         html=self.req.get(url).text
         regex=re.compile(r"<strong>(?P<resolusi>[^<]+)</strong>(\s+|)<(span|a) style=\"[^h]+href=\"(?P<link1>[^\"]+)\"[^>]+>(?P<host1>[^<]+)</a>[^h]+href=\"(?P<link2>[^\"]+)\"[^>]+>(?P<host2>[^<]+)</a>[^h]+href=\"(?P<link3>[^\"]+)\"[^>]+>(?P<host3>[^<]+)</a>[^h]+href=\"(?P<link4>[^\"]+)\"[^>]+>(?P<host4>[^<]+)</a>[^h]+href=\"(?P<link5>[^\"]+)\"[^>]+>(?P<host5>[^<]+)</a>[^h]+href=\"(?P<link6>[^\"]+)\"[^>]+>(?P<host6>[^<]+)</a>")
         a=re.findall(r"(<strong>[^<]+</strong>(\s+|)<(span|a) style=\"[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>)",str(html))
-        html='<div style="padding:10px">'
+        html=''
         for x in range(4):
             res=re.search(regex,str(a[x][0]))
             html+='''
@@ -27,17 +27,16 @@ height: 15px;">{}</span>
 <a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">{}</a>
 </div>
 '''.format(res.group('resolusi'),yudhaLIB(res.group('link1')),res.group('host1'),yudhaLIB(res.group('link2')),res.group('host2'),yudhaLIB(res.group('link3')),res.group('host3'),yudhaLIB(res.group('link4')),res.group('host4'),yudhaLIB(res.group('link5')),res.group('host5'),yudhaLIB(res.group('link6')),res.group('host6'))
-        html+='</div>'
         return html
             
             
     def oploverz(self,url):
         html=self.req.get(url).text
         judul=re.findall(r"<div class=\"sorattl title-download\">([^<]+)</div>",str(html))
-        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Elsfile</a>",str(html))
-        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Zippyshare</a>",str(html))
-        googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Google Drive</a>",str(html))
-        mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Mirror</a>",str(html))
+        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^E]+Elsfile</a>",str(html))
+        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^Z]+Zippyshare</a>",str(html))
+        googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^G]+Google Drive",str(html))
+        mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^M]+Mirr",str(html))
         while(len(judul)>len(elsfile)):
               elsfile.append('placeholder')
         while(len(judul)>len(zippyshare)):
@@ -46,7 +45,7 @@ height: 15px;">{}</span>
               googledrive.append('placeholder')
         while(len(judul)>len(mirror)):
               mirror.append('placeholder')
-        html='<div style="padding:10px">'
+        html='';
         for x in list(zip(judul,elsfile,zippyshare,googledrive,mirror)):
               html+='''
  <div class="mb-1">
@@ -62,7 +61,6 @@ height: 15px;">{}</span>
 <a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">MirrorCreator</a>
 </div>
 '''.format(x[0],yudhaLIB(x[1]),yudhaLIB(x[2]),yudhaLIB(x[3]),yudhaLIB(x[4]))
-        html+='</div>'
         return html
         
     def awsubs(self,url):
