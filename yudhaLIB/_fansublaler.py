@@ -6,6 +6,8 @@ class fansub:
     req=requests.Session()
     def samehadaku(self,url):
         html=self.req.get(url).text
+        html=re.sub(r"<strong>","",str(html))
+        html=re.sub(r"</strong>","",str(html))
         regex=re.compile(r"<strong>(?P<resolusi>[^<]+)</strong>(\s+|)<(span|a) style=\"[^h]+href=\"(?P<link1>[^\"]+)\"[^>]+>(?P<host1>[^<]+)</a>[^h]+href=\"(?P<link2>[^\"]+)\"[^>]+>(?P<host2>[^<]+)</a>[^h]+href=\"(?P<link3>[^\"]+)\"[^>]+>(?P<host3>[^<]+)</a>[^h]+href=\"(?P<link4>[^\"]+)\"[^>]+>(?P<host4>[^<]+)</a>[^h]+href=\"(?P<link5>[^\"]+)\"[^>]+>(?P<host5>[^<]+)</a>[^h]+href=\"(?P<link6>[^\"]+)\"[^>]+>(?P<host6>[^<]+)</a>")
         a=re.findall(r"(<strong>[^<]+</strong>(\s+|)<(span|a) style=\"[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>[^h]+href=\"[^\"]+\"[^>]+>[^<]+</a>)",str(html))
         html=''
@@ -33,10 +35,10 @@ height: 15px;">{}</span>
     def oploverz(self,url):
         html=self.req.get(url).text
         judul=re.findall(r"<div class=\"sorattl title-download\">([^<]+)</div>",str(html))
-        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^E]+Elsfile",str(html))
-        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^Z]+Zippyshare",str(html))
-        googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^G]+Google Drive",str(html))
-        mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>[^M]+Mirr",str(html))
+        elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Elsfile",str(html))
+        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Zippyshare",str(html))
+        googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Google Drive",str(html))
+        mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Mirr",str(html))
         while(len(judul)>len(elsfile)):
               elsfile.append('placeholder')
         while(len(judul)>len(zippyshare)):
