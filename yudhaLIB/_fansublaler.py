@@ -34,6 +34,9 @@ height: 15px;">{}</span>
             
     def oploverz(self,url):
         html=self.req.get(url).text
+        html=re.sub(r"<strong>","",str(html))
+        html=re.sub(r"</strong>","",str(html))
+        html=re.sub(r"rel=\"noopener\">(\s+)","rel=\"noopener\">",str(html))
         judul=re.findall(r"<div class=\"sorattl title-download\">([^<]+)</div>",str(html))
         elsfile=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Elsfile",str(html))
         zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Zippyshare",str(html))
