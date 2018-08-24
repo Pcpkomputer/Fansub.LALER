@@ -39,7 +39,7 @@ class fansub:
         while(len(judul)>len(mu)):
             mu.append('placeholder')
         
-        html=''
+        html='<div style="padding:10px;">'
 
         for x in list(zip(judul,zs,gd,uf,cu,sc,mu)):
             html+='''
@@ -58,6 +58,7 @@ height: 15px;">{}</span>
 <a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Megaupload</a>
 </div>
 '''.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6])
+        html+='</div>'
         return html
             
             
@@ -79,7 +80,7 @@ height: 15px;">{}</span>
               googledrive.append('placeholder')
         while(len(judul)>len(mirror)):
               mirror.append('placeholder')
-        html=''
+        html='<div style="padding:10px;">'
         for x in list(zip(judul,elsfile,zippyshare,googledrive,mirror)):
               html+='''
  <div class="mb-1">
@@ -95,6 +96,7 @@ height: 15px;">{}</span>
 <a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">MirrorCreator</a>
 </div>
 '''.format(x[0],x[1],x[2],x[3],x[4])
+        html+='</div>'
         return html
         
     def awsubs(self,url):
@@ -125,7 +127,7 @@ height: 15px;">{}</span>
             zippyshare.append('placeholder')
         while(len(judul)>len(googledrive)):
             googledrive.append('placeholder')
-        html=''
+        html='<div style="padding:10px;">'
         escape=lambda x: re.sub(r"&","%26",str(x))
         for x in list(zip(judul,solidfiles,mirror,zippyshare,googledrive)):
              html+='''
@@ -142,6 +144,7 @@ height: 15px;">{}</span>
 <a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Googledrive</a>
 </div>
 '''.format(x[0],escape(x[1]),escape(x[2]),escape(x[3]),escape(x[4]))
+        html+='</div>'
         return html
     def animepahe(self,url):
         return 'samehada'
