@@ -1,6 +1,6 @@
 import re
 import requests
-from _bypasser import yudhaLIB
+from yudhaLIB._bypasser import yudhaLIB
 import base64
 
 encode=lambda x: base64.b64encode(x)
