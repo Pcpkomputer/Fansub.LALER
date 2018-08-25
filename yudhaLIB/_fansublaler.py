@@ -146,10 +146,53 @@ height: 15px;">{}</span>
 '''.format(x[0],escape(x[1]),escape(x[2]),escape(x[3]),escape(x[4]))
         html+='</div>'
         return html
+    def anitoki(self,url):
+        html=self.req.get(url).text
+        judul=re.findall(r"<div class=\"smokeurl\"><strong>([^<]+)</strong>",str(html))
+        googledrive=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Driv",str(html))
+        datafilehost=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Datafilehost",str(html))
+        zippyshare=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Zippyshare",str(html))
+        uppit=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Uppit",str(html))
+        openload=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Openload",str(html))
+        mirror=re.findall(r"<a href=\"([^\"]+)\"[^>]+>Mirror",str(html))
+
+        while(len(judul)>len(googledrive)):
+            googledrive.append('placeholder')
+        while(len(judul)>len(datafilehost)):
+            datafilehost.append('placeholder')
+        while(len(judul)>len(zippyshare)):
+            zippyshare.append('placeholder')
+        while(len(judul)>len(uppit)):
+            uppit.append('placeholder')
+        while(len(judul)>len(openload)):
+            openload.append('placeholder')
+        while(len(judul)>len(mirror)):
+            mirror.append('placeholder')
+        
+        html='<div style="padding:10px;">'
+        for x in list(zip(judul,googledrive,datafilehost,zippyshare,uppit,openload,mirror)):
+             html+='''
+ <div class="mb-1">
+<span class="uk-badge" style="
+font-size: 9px;
+border-radius: 0px;
+margin-left: 6px;
+background-color: #c5c5c5;
+height: 15px;">{}</span>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Googledrive</a>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Datafilehost</a>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Zippyshare</a>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Uppit</a>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Openload</a>
+<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Mirror</a>
+</div>
+'''.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6])
+        html+='</div>'
+        return html
+
     def animepahe(self,url):
         return 'samehada'
-    def anitoki(self,url):
-        return 'samehada'
+   
     def drivenime(self,url):
         return 'samehada'
 
@@ -163,10 +206,10 @@ def _fansublaler(f,url):
     if f=='animepahe':
         return fansub().animepahe(url)
     if f=='anitoki':
-        return fansub.anitoki(url)
+        return fansub().anitoki(url)
     if f=='drivenime':
-        return fansub.drivenime(url)
+        return fansub().drivenime(url)
     
 if __name__=='__main__':
-    _fansublaler('awsubs','http://awsubs.co/shichisei-no-subaru-episode-8-subtitle-indonesia/')
+    _fansublaler('anitoki','http://anitoki.com/2018/08/grand-blue-07-subtitle-indonesia/')
     

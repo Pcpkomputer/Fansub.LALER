@@ -43,6 +43,9 @@ def api():
                 if re.search(r"awsubs",str(url)):
                     res=_fansublaler('awsubs',request.args.get('url'))
                     return str(res)
+                if re.search(r"anitoki",str(url)):
+                    res=_fansublaler('anitoki',request.args.get('url'))
+                    return str(res)
                 else:
                     return 'error'
             except Exception as r:
