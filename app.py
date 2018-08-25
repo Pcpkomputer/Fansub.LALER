@@ -11,10 +11,7 @@ CORS(app)
 
 @app.route('/',methods=['GET','POST'])
 def index():
-    if request.user_agent.platform=='android':
-        return render_template('android.html')
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/api',methods=['GET','POST'])
 def api():
