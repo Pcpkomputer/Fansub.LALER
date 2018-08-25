@@ -179,12 +179,12 @@ border-radius: 0px;
 margin-left: 6px;
 background-color: #c5c5c5;
 height: 15px;">{}</span>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Googledrive</a>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Datafilehost</a>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Zippyshare</a>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Uppit</a>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Openload</a>
-<a href="api?redirect={}" style="margin-left:5px;font-size:10px;color: #848484;">Mirror</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Googledrive</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Datafilehost</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Zippyshare</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Uppit</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Openload</a>
+<a href="{}" style="margin-left:5px;font-size:10px;color: #848484;">Mirror</a>
 </div>
 '''.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6])
         html+='</div>'
