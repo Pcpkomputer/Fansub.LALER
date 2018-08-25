@@ -331,6 +331,7 @@ height: 15px;
     })
 
     $(document).on('click','#sptfansub',(e)=>{
+        alert('debug');
         e.currentTarget.classList.remove('sptfansub');
         if(e.currentTarget.classList[1]=='sptfansub-aktif'){
             e.currentTarget.classList.remove('sptfansub-aktif');
