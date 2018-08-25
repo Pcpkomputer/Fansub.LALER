@@ -8,12 +8,20 @@ import re
 app=Flask(__name__)
 CORS(app)
 
+
 @app.route('/',methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    if request.user_agent.platform=='android':
+        return render_template('android.html')
+    else:
+        return render_template('index.html')
 
 @app.route('/api',methods=['GET','POST'])
 def api():
+    if request.args.get('kueri'):
+        kueri=request.args.get('kueri')
+        fansub=request.args.get('fansub')
+        return 'kueri'
     if request.args.get('redirect'):
         res=yudhaLIB(request.args.get('redirect'))
         return redirect(res)

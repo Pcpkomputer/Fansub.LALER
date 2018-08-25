@@ -265,7 +265,7 @@ height: 15px;
         
     $(document).on('click','#closelalerfansub',function(e){
         document.getElementById('closelalerfansub').style.display='none';
-        $('#hasilfitur').slideUp(300);
+        $('#hasilfitur').hide();
         document.getElementById('lalerfansub').removeAttribute('disabled');
         document.getElementById('lalerfansub').value='';
     })
@@ -277,7 +277,7 @@ height: 15px;
                                         <div id="loadbar" class="loading load-bar" style="height:1px;margin-bottom:30px;">
                                                 <span></span>
                                                 </div>`;
-            $('#hasilfitur').slideDown(300);
+            $('#hasilfitur').show();
             document.getElementById('closelalerfansub').style.display='';
             e.currentTarget.setAttribute('disabled','disabled');
             $.get(__app__+'api?mode=bypass&url='+e.currentTarget.value,function(data,status){
@@ -301,7 +301,7 @@ height: 15px;
                                         <div id="loadbar" class="loading load-bar" style="height:1px;margin-bottom:30px;">
                                                 <span></span>
                                                 </div>`;
-                                                $('#hasilfitur').slideDown(300);
+                                                $('#hasilfitur').show();
             document.getElementById('closelalerfansub').style.display='';
             $.ajax({
                 type:'GET',
@@ -321,11 +321,11 @@ height: 15px;
        
         if(e.currentTarget.classList[1]==undefined){
             e.currentTarget.classList.add('aktif');
-            $('#panelopsi').slideDown(100);
+            $('#panelopsi').show();
         }
         else{
             e.currentTarget.classList.remove('aktif');
-            $('#panelopsi').slideUp(100);
+            $('#panelopsi').hide();
         }
         
     })
@@ -335,12 +335,12 @@ height: 15px;
         if(e.currentTarget.classList[1]=='sptfansub-aktif'){
             e.currentTarget.classList.remove('sptfansub-aktif');
             e.currentTarget.classList.add('sptfansub');
-            $('#searchbox').slideUp(300);
-            $('#hasilfitur').slideUp(300);
+            $('#searchbox').hide();
+            $('#hasilfitur').hide();
             document.getElementById('lalerfansub').removeAttribute('disabled');
              document.getElementById('lalerfansub').value='';
             document.getElementById('closelalerfansub').style.display='none';
-            $('#searchbox').slideDown(300);
+            $('#searchbox').show();
             document.querySelectorAll('#lalerfansub')[0].placeholder="Masukkan tautan fansub";
             
 
@@ -352,12 +352,12 @@ height: 15px;
                 a.classList.remove('sptfansub-aktif');
     
             })
-            $('#searchbox').slideUp(300);
-            $('#hasilfitur').slideUp(300);
+            $('#searchbox').hide();
+            $('#hasilfitur').hide();
             document.getElementById('lalerfansub').removeAttribute('disabled');
              document.getElementById('lalerfansub').value='';
             document.getElementById('closelalerfansub').style.display='none';
-            $('#searchbox').slideDown(300);
+            $('#searchbox').show();
             document.querySelectorAll('#lalerfansub')[0].placeholder="Kata pencarian kueri "+e.currentTarget.innerHTML.toLowerCase();
             e.currentTarget.classList.remove('sptfansub');
             e.currentTarget.classList.add('sptfansub-aktif');
