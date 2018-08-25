@@ -147,7 +147,7 @@ input[type="text"]:disabled {
             display: inline-flex;
             ">
                 <li id="tekanpengaturan" class="tekan"><i class="fas fa-wrench"></i></li>
-                <li class="tekan"><i class="fas fa-heart"></i></li>
+                <li id="debugging" class="tekan"><i class="fas fa-heart"></i></li>
             </ul>
         </div>
     
@@ -295,6 +295,11 @@ height: 15px;
     
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).on('click','#debugging', function(e){
+        alert('123');
+    })
+    </script>
     <script>
     
     var __app__='http://fansub-laler.herokuapp.com/';
