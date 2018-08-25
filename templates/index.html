@@ -4,6 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Fansub.LALER v1.5.0</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/png" href="http://terrific.fansub.cc/favicon.png"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
@@ -18,6 +19,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
 <style>
+
+.kueri{
+    background-color:#c5c5c5;
+    cursor:pointer;
+}
+
+.kueri:hover{
+     background-color:#9e9e9e;
+}
 
       .load-bar {
   width: 100%;
@@ -112,6 +122,7 @@ input[type="text"]:disabled {
 </style>
     </head>
     <body style="font-family: 'Quicksand', sans-serif;">
+        
         <div class="container-fluid p-0">
             <div class="navbar col-lg-12" style="background-color:#303030">
         <div class="container">
@@ -158,14 +169,14 @@ input[type="text"]:disabled {
                         <div class="row">
                             <div class="col-lg-12">
 
-                                    <select name="cars" style="    width: 100%;
+                                    <select id="server-app" style="    width: 100%;
                                     outline: none;
                                     border-radius: 5px;
                                     background-color: #b3b3b3;
                                     font-size: 13px;">
-                                            <option value="1">Fitur #1: Otomatis mengambil link langsung dari link fansub;</option>
-                                            <option value="2">Fitur #2: Melihat rilisan terbaru dari seluruh fansub Indonesia</option>
-                                            <option value="3">Fitur #3: Fitur kueri dari beberapa fastsubs</option>
+                                            <option value="http://fansub-laler.herokuapp.com/">http://fansub-laler.herokuapp.com/</option>
+                                            <option value="http://fansub-lalerv2.herokuapp.com/">http://fansub-lalerv2.herokuapp.com/</option>
+                                            <option value="http://127.0.0.1:5000/">http://127.0.0.1:5000/</option>
                                           </select>
                             </div>
                         </div>
@@ -262,6 +273,11 @@ height: 15px;
     <script>
     
     var __app__='http://fansub-laler.herokuapp.com/';
+
+    serverapp=document.getElementById('server-app');
+    serverapp.addEventListener('input',(e)=>{
+        __app__=serverapp.value;
+    })
         
     $(document).on('click','#closelalerfansub',function(e){
         document.getElementById('closelalerfansub').style.display='none';
@@ -297,6 +313,7 @@ height: 15px;
             })
         }
         if(e.currentTarget.placeholder.match(/kueri/g)){
+            e.currentTarget.setAttribute('disabled','disabled');
             document.getElementById('hasilfitur').innerHTML=`
                                         <div id="loadbar" class="loading load-bar" style="height:1px;margin-bottom:30px;">
                                                 <span></span>
@@ -305,12 +322,18 @@ height: 15px;
             document.getElementById('closelalerfansub').style.display='';
             $.ajax({
                 type:'GET',
-                url:'/api',
+                url:__app__+'api?kueri='+document.querySelectorAll('#lalerfansub')[0].value+'&fansub='+document.querySelectorAll('.sptfansub-aktif')[0].innerText.toLowerCase(),
                 success:function(e){
-                    console.log(e);
+                    if(e.length==33){
+                        document.getElementById('hasilfitur').innerHTML='';
+                    }
+                    else{
+                        document.getElementById('hasilfitur').innerHTML=e;
+                    }
+                    
                 },
                 error:function(err){
-                    console.log(err);
+                    document.getElementById('hasilfitur').innerHTML='';
                 }
             })
         }
@@ -364,5 +387,19 @@ height: 15px;
         }
         
     })
+
+    copytoclipboard=function(text){
+        document.querySelectorAll('#clipboard')[0].innerHTML=text;
+        document.querySelectorAll('#clipboard')[0].style.display='';
+        document.querySelectorAll('#clipboard')[0].select();
+        document.execCommand('copy');
+        document.querySelectorAll('#clipboard')[0].style.display='none';
+    }
+
+    $(document).on('click','.kueri',(e)=>{
+        copytoclipboard(e.currentTarget.id.toString());
+        alert('Berhasil dikopas ke clipboard!')
+    })
+
     </script>
-</body></html>
+</body><textarea id="clipboard" style="display:none"></textarea></html>

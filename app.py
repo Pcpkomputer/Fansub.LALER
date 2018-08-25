@@ -2,7 +2,7 @@ from flask import Flask,request,url_for,redirect,render_template
 from flask_cors import CORS
 from yudhaLIB._bypasser import yudhaLIB
 from yudhaLIB._fansublaler import _fansublaler
-from yudhaLIB._pencarian import *
+from yudhaLIB._pencarian import _pencarian
 import re
 
 app=Flask(__name__)
@@ -15,10 +15,17 @@ def index():
 
 @app.route('/api',methods=['GET','POST'])
 def api():
-    if request.args.get('kueri'):
+    if request.args.get('fansub'):
         kueri=request.args.get('kueri')
         fansub=request.args.get('fansub')
-        return 'kueri'
+        if fansub=='oploverz':
+            return _pencarian(fansub,kueri)
+        if fansub=='samehadaku':
+            return _pencarian(fansub,kueri)
+        if fansub=='awsubs':
+            return _pencarian(fansub,kueri)
+        if fansub=='anitoki':
+            return _pencarian(fansub,kueri)
     if request.args.get('redirect'):
         res=yudhaLIB(request.args.get('redirect'))
         return redirect(res)
