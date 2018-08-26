@@ -10,7 +10,7 @@ class fansub:
     req=requests.Session()
     def samehadaku(self,url):
         html=self.req.get(url).text
-        judul=re.findall(r"<li([^>]+>|>)<strong>([^<]+)</strong>[\s<]+[^h]+href[^>]+>[^<]+</a></span>[^<]+<span",html)
+        judul=re.findall(r"<li([^>]+|)><strong>([^<]+)</strong>(\s|)<span",html)
         zs=re.findall(r"href=\"([^\"]+)\"[^>]+>(\s+|)ZS",html)
         gd=re.findall(r"href=\"([^\"]+)\"[^>]+>(\s+|)GD",html)
         uf=re.findall(r"href=\"([^\"]+)\"[^>]+>(\s+|)UF",html)
@@ -25,7 +25,7 @@ class fansub:
         cu=[x[0] for x in cu]
         sc=[x[0] for x in sc]
         mu=[x[0] for x in mu]
-
+        
         while(len(judul)>len(zs)):
             zs.append('placeholder')
         while(len(judul)>len(gd)):
@@ -38,7 +38,7 @@ class fansub:
             sc.append('placeholder')
         while(len(judul)>len(mu)):
             mu.append('placeholder')
-        
+
         html='<div style="padding:10px;">'
 
         for x in list(zip(judul,zs,gd,uf,cu,sc,mu)):
@@ -211,5 +211,5 @@ def _fansublaler(f,url):
         return fansub().drivenime(url)
     
 if __name__=='__main__':
-    _fansublaler('anitoki','http://anitoki.com/2018/08/grand-blue-07-subtitle-indonesia/')
+    _fansublaler('samehadaku','https://www.samehadaku.tv/2018/08/one-piece-episode-851-subtitle-indonesia.html')
     
