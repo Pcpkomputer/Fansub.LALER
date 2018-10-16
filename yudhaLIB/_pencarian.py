@@ -43,9 +43,9 @@ class fansub:
         html+='</div>'
         return html
     def awsubs(self,query):
-        url='http://awsubs.co/?s={}&post_type=release'.format(query)
-        html=self.req.get(url).text
-        arr=re.findall(r"<div class=\"kirizona\">\s+<h2><a href=\"([^\"]+)\" title=\"([^\"]+)\">",str(html))
+        keyword=query
+        w=self.req
+        arr=re.findall(r"<span class=\"lchx\"><a href=\"([^\"]+)\">([^<]+)</a>",str(w.get(re.findall(r"<div class=\"arche\"><div class=\"imgx\"> <a href=\"([^\"]+)\" title=\"[^\"]+\">",str(w.get("http://awsubs.co/?s={}".format(keyword)).text))[0]).text))
         html='<div style="padding:15px;">'
         for i in arr:
             html+='''
