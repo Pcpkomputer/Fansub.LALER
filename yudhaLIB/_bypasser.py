@@ -97,10 +97,12 @@ def yudhaLIB(x):
     link=req.get(link,headers=headers).url
     val=pengecek(link)
     while re.search(__GET,str(val)):
-        val=pengecek(req.get(val).url)
+        if re.search(r"bit.ly",str(val)):
+            val=req.get(val).url
+        val=pengecek(val)
     else:
-        return val
+        print(val)
 
-#if __name__=='__main__':
-#    yudhaLIB('http://awsubsco.ml/en/cost/short.awsubs.co?id=aHR0cDovL3NoKHJ0LiF3cypicy5jKC8wY2ZkZg==&c=1&user=61942')
+if __name__=='__main__':
+    yudhaLIB('https://www.tetew.info/njir/MTRKm')
 
