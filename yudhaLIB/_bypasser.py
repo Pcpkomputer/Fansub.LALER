@@ -101,8 +101,8 @@ def yudhaLIB(x):
             val=req.get(val).url
         val=pengecek(val)
     else:
-        print(val)
+        return val
 
-if __name__=='__main__':
-    yudhaLIB('https://www.tetew.info/njir/MTRKm')
+#if __name__=='__main__':
+#    yudhaLIB('https://www.tetew.info/njir/MTRKm')
 
