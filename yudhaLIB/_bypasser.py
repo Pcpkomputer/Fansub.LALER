@@ -1,7 +1,7 @@
 import re
 import requests
 
-__GET=re.compile(r"(awcar.icu|bolaoke.club|short.awsubs|www.tetew.info|www.anjay.info|hexafile.net|greget.space|awsubsco.cf)")
+__GET=re.compile(r"(awcar.icu|bolaoke.club|short.awsubs|www.tetew.info|www.anjay.info|hexafile.net|greget.space|awsubsco.cf|bit.ly|speedcar.club|awsubsco.ml)")
 headers={"User-Agent" : "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"}
 req=requests.Session()
 
@@ -46,7 +46,15 @@ class jamu:
         self.link=re.search(r"function changeLink\(\){var a='([^']+)';window",str(self.html)).group(1)
         self.link=req.get(self.link,headers=headers).url
         return self.link
-        
+    def speedcar_club(self,x):
+        self.html=req.post('http://speedcar.club/toyota-akan-pamer-corolla-hybrid-di-paris-motor-show/',headers=headers, data={"get":re.search(r"\?id=([^\s]+)",str(x)).group(1)}).text
+        return re.search(r"function changeLink\(\){var a='([^\']+)\';window.open",str(self.html)).group(1)
+    def awsubsco_ml(self,x):
+        self.html=req.get(x,headers=headers).text
+        self.link=re.search(r"var d_link[^']+'([^']+)\';",str(self.html)).group(1)
+        self.link=re.sub(r"%3A",":",str(self.link))
+        self.link=re.sub(r"%2F","/",str(self.link))
+        return self.link
     
 def pengecek(x):
     if re.search(r"greget.space/\?r=.*",str(x)):
@@ -67,6 +75,9 @@ def pengecek(x):
     if re.search(r"awsubsco.cf",str(x)):
         bypass=jamu()
         return bypass.awsubsco_cf(x)
+    if re.search(r"awsubsco.ml",str(x)):
+        bypass=jamu()
+        return bypass.awsubsco_ml(x)
     if re.search(r"short.awsubs",str(x)):
         bypass=jamu()
         return bypass.short_awsubs(x)
@@ -76,13 +87,20 @@ def pengecek(x):
     if re.search(r"awcar.icu",str(x)):
         bypass=jamu()
         return bypass.awcar_icu(x)
+    if re.search(r"speedcar.club",str(x)):
+        bypass=jamu()
+        return bypass.speedcar_club(x)
+  
 
 def yudhaLIB(x):
     link=x
     link=req.get(link,headers=headers).url
     val=pengecek(link)
     while re.search(__GET,str(val)):
-        val=pengecek(val)
+        val=pengecek(req.get(val).url)
     else:
         return val
+
+#if __name__=='__main__':
+#    yudhaLIB('http://awsubsco.ml/en/cost/short.awsubs.co?id=aHR0cDovL3NoKHJ0LiF3cypicy5jKC8wY2ZkZg==&c=1&user=61942')
 
